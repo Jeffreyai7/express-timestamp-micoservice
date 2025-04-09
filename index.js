@@ -4,7 +4,11 @@
 // init project
 import express from "express";
 const app = express();
+import { dirname } from "path";
+import { fileURLToPath } from "url";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
 import cors from "cors";
@@ -25,7 +29,7 @@ app.get("/api/:date?", function (req, res) {
   if (!dateInput) {
     return res.json({
       unix: new Date().getTime(),
-      utc: new Date().toUTCString(),
+      utc: new Date().toString(),
     });
   }
 
